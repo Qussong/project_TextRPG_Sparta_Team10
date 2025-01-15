@@ -4,11 +4,17 @@
 StrangePotion::StrangePotion()
 {
 	name = "Strange Potion";
+	price = 100;
 }
 
 std::string StrangePotion::getName()
 {
 	return name;
+}
+
+int StrangePotion::getPrice()
+{
+	return price;
 }
 
 void StrangePotion::use(Character* character)

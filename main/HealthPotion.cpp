@@ -4,11 +4,17 @@
 HealthPotion::HealthPotion()
 {
 	name = "Health Potion";
+	price = 80;
 }
 
 std::string HealthPotion::getName()
 {
 	return name;
+}
+
+int HealthPotion::getPrice()
+{
+	return price;
 }
 
 void HealthPotion::use(Character* character)

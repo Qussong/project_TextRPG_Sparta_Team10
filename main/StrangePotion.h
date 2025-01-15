@@ -10,6 +10,7 @@ public:
 
 public:
 	virtual std::string getName();
+	virtual int getPrice();
 	virtual void use(Character* character);
 };
 

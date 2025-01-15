@@ -16,15 +16,17 @@ Character::Character(string name)
 	this->experience = 0;
 	this->experienceToNestLevel = 100;
 	this->gold = 0;
-	Stuff healingPotion;
-	Stuff strangePotion;
-	healingPotion.Item = new HealthPotion();
-	strangePotion.Item = new StrangePotion();
-	healingPotion.ItemName = healingPotion.Item->getName();
-	strangePotion.ItemName = strangePotion.Item->getName();
-	healingPotion.ItemQuantity = 3;
-	strangePotion.ItemQuantity = 3;
+
+	Stuff* healingPotion = new Stuff();
+	healingPotion->Item = new HealthPotion();
+	healingPotion->ItemName = healingPotion->Item->getName();
+	healingPotion->ItemQuantity = 3;
 	this->inventory.push_back(healingPotion);
+
+	Stuff* strangePotion = new Stuff();
+	strangePotion->Item = new StrangePotion();
+	strangePotion->ItemName = strangePotion->Item->getName();
+	strangePotion->ItemQuantity = 3;
 	this->inventory.push_back(strangePotion);
 }
 
@@ -40,13 +42,13 @@ Character* Character::getInstance(string name)
 
 void Character::displayStatus()
 {
-	cout << "------------------" << endl;
+	cout << "\n------------------" << endl;
 	cout << "Status" << endl;
 	cout << "Level: " << level << endl;
 	cout << "Exp: " << experience << " / " << experienceToNestLevel << endl;
 	cout << "Health: " << health << " / " << maxHealth << endl;
 	cout << "Attack: " << attack << endl;
-	cout << "------------------" << endl;
+	cout << "------------------\n" << endl;
 }
 void Character::levelUp()
 {
@@ -146,20 +148,25 @@ string Character::getName() const
 	return this->name;
 }
 
+Stuff* Character::getItem(int idx)
+{
+	return inventory[idx];
+}
+
 void Character::usePotion()
 {
-	if(this->health < this->health/50 && inventory[0].ItemQuantity > 0)
+	if(this->health < this->health/50 && inventory[0]->ItemQuantity > 0)
 	{
-		inventory[0].Item->use(instance);
-		inventory[0].ItemQuantity--;
+		inventory[0]->Item->use(instance);
+		inventory[0]->ItemQuantity--;
 	}
-	else if(inventory[1].ItemQuantity > 0)
+	else if(inventory[1]->ItemQuantity > 0)
 	{
 		int per = rand() % 3;
 		if (per == 2)
 		{
-			inventory[1].Item->use(instance);
-			inventory[1].ItemQuantity--;
+			inventory[1]->Item->use(instance);
+			inventory[1]->ItemQuantity--;
 		}
 	}
 }
@@ -168,12 +175,13 @@ void Character::showInventory()
 {
 	cout << "-----------------------------------------" << endl;
 	cout << "보유 중인 아이템 목록" << endl;
+	cout << "골드 : " << this->gold << endl;
 
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		cout << i + 1 << "번 칸 : " << inventory[i].ItemName << " - 보유량 : " 
+		cout << i + 1 << "번 칸 : " << inventory[i]->ItemName << " - 보유량 : " 
 			
-			<< inventory[i].ItemQuantity << "개 -" << endl;
+			<< inventory[i]->ItemQuantity << "개 -" << endl;
 	}
 	cout << "-----------------------------------------" << endl;
 }

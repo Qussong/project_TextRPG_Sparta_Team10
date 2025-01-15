@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <windows.h> // Windows API 사용
 
 class Monster;
 
@@ -13,28 +14,13 @@ private:
 	int trollCount = 0;
 	static GameManager* instance;
 
-	std::ofstream logFile;	// Output File Stream
-
 	GameManager()
 	{
 		std::cout << "[ Create Game Manager ]" << std::endl;
-
-		logFile.open("../log.txt", std::ios::app); // 로그 파일 열기 (append 모드)
-		if (!logFile.is_open()) {
-			throw std::runtime_error("[ Unable to open log file. ]");
-		}
-		else
-		{
-			std::cout << "[ Set Log File ]" << std::endl;
-		}
 	}
 
 	~GameManager() 
 	{
-		if (logFile.is_open()) {
-			logFile.close();
-			std::cout << "[ Close Log File ]" << std::endl;
-		}
 	}
 
 	GameManager(const GameManager&) = delete;
@@ -59,27 +45,31 @@ public:
 		}
 	}
 
-	void displayKillCounts() const {
-		std::cout << std::endl;
-		std::cout << "------------------" << std::endl;
-		std::cout << "현재까지 잡은 몬스터 수" << std::endl;
-		std::cout << "늑대 : " << wolfCount << std::endl;
-		std::cout << "고블린 : " << goblinCount << std::endl;
-		std::cout << "오크 : " << orcCount << std::endl;
-		std::cout << "트롤 : " << trollCount << std::endl;
-		std::cout << "------------------" << std::endl;
-		std::cout << std::endl;
-	}
-
-	void Log(const std::string& message);	// Log 출력 및 기록
+	void displayKillCounts() const;	// 몬스터 처치 기록
 
 	void Init();		// 초기화
 	void Progress();	// 게임 로직
 	bool Update();		// 게임 데이터 업데이트
 	void Destroy();		// 마무리 정리
-	int currentHealth;
-	int maxHealth;
 
 private:
 	Monster* GenMonster(int playerLevel);
+
+public:
+	/// <summary>
+	/// 
+	/// 0 = Black
+	/// 1 = Blue
+	/// 2 = Green
+	/// 3 = Aqua
+	/// 4 = Red
+	/// 5 = Purple
+	/// 6 = Yellow
+	/// 7 = White
+	/// 
+	/// </summary>
+	static void setConsoleColor(int color) {
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); // 콘솔 핸들 가져오기
+		SetConsoleTextAttribute(hConsole, color);         // 색상 설정
+	}
 };
