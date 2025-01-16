@@ -130,6 +130,7 @@
     <ClCompile Include="..\Character\Character.cpp" />
     <ClCompile Include="AttackBoost.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="Enum.h" />
     <ClCompile Include="FileReaderManager.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Goblin.cpp" />

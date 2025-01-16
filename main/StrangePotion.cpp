@@ -26,7 +26,7 @@ void StrangePotion::use(Character* character)
 	int probability = rand() % 100;
 	if (probability < 40)
 	{
-		std::cout << "아무 일도 일어나지 않았습니다." << std::endl;
+		std::cout << "아무 일도 일어나지 않았습니다...." << std::endl;
 	}
 	else if (probability < 70)
 	{

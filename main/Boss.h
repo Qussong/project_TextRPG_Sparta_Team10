@@ -1,6 +1,13 @@
 #pragma once
 #include "Monster.h"
 
+enum EBossCondition
+{
+	INTRO,
+	HALF,
+	ALMOST,
+	DEATH,
+};
 
 class Boss : public Monster {
 public:
@@ -14,12 +21,12 @@ public:
 	inline int mGetLevel() const override { return level; }
 
 	void mTakeDamage(int damage);
+	void SoundEffect(EBossCondition condition);
 
-	void SoundEffect(float per);
+	bool GetHalfAlarm() { return bHalfAlarm; }
+	bool GetAlmostAlarm() { return bAlmostAlarm; }
 
 private:
-	bool bMeet;	// 조우, 50, 20, 주을때
-	bool bHpHalf;
-	bool bAlmostDeath;
-	bool bDeath;
+	bool bHalfAlarm = true;
+	bool bAlmostAlarm = true;
 };

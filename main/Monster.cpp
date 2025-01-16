@@ -19,7 +19,7 @@ void Monster::mDisplayStatus()
 {
 	std::cout << std::endl;
 	std::cout << "------------------" << std::endl;
-	std::cout << "- " << name << " -" << std::endl;
+	std::cout << " [ " << name << " ] " << std::endl;
 	std::cout << "Level: " << level << std::endl;
 	std::cout << "Health: " << health << " / " << maxHealth << std::endl;
 	std::cout << "Attack: " << attack << std::endl;

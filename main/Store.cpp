@@ -103,9 +103,9 @@ void Store::showList()
 	std::cout << "판매 목록" << std::endl;
 	for (int i = 0; i < items.size(); i++)
 	{
-		std::cout << i + 1 << " : " << items[i]->getName() << " 구매 가격 : " << items[i]->getPrice() << std::endl;
+		std::cout << i + 1 << " : " << items[i]->getName();
+		std::cout << "\n ///// 구매 가격: " << items[i]->getPrice() << " ///// 판매 가격: " << items[i]->getPrice()*0.6 << " /////\n" << std::endl;
 	}
-	std::cout << "아이템 판매 가격은 구매 가격의 60%입니다." << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << std::endl;
 }

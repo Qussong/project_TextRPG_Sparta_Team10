@@ -3,11 +3,13 @@
 #include "GameManager.h"
 #include "FileReaderManager.h"
 
+/// <summary>
+/// 
+/// 플레이어 이름 : English Only!!
+/// 
+/// </summary>
 int main()
 {
-    // Manager Set
-    GameManager* GM = GameManager::GetInstance();
-
     // GameLogic
     GM->Init();         // Init
     GM->Progress();     // Update

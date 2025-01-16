@@ -13,9 +13,6 @@ class FileReaderManager
 private:
 	static FileReaderManager* instance;
 
-	//std::ifstream readFile;	// Input File Stream
-	//std::vector<std::string> lineContainer;
-
 	std::wifstream readFile;
 	std::vector<std::wstring>lineContainer;
 
@@ -46,7 +43,7 @@ public:
 		{
 			delete instance;
 			instance = nullptr;
-			std::cout << "[ Delete File Reader Manager ]" << std::endl;
+			//std::cout << "[ Delete File Reader Manager ]" << std::endl;
 		}
 	}
 
@@ -55,9 +52,10 @@ private:
 
 public:
 	bool OpenFile(std::wstring filePath);
-	void PrintLine(int idx, bool bTypeEffect = true);	// lineContainer 에 들어있는 내용을 출력한다.
-	void PrintLineAll(bool bTypeEffect = true);		// lineContainer 에 들어있는 내용을 전부 출력한다.
+	void PrintLine(int idx, std::wstring playerName = L"", bool bTypeEffect = true);	// lineContainer 에 들어있는 내용을 출력한다.
+	void PrintLineAll(std::wstring playerName = L"", bool bTypeEffect = true);			// lineContainer 에 들어있는 내용을 전부 출력한다.
 	void CloseFile();
 
 	void typingEffect(const std::wstring& text, int delay = 30);
+	void insertPlayerName(std::wstring playerName);
 };
